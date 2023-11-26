@@ -15,7 +15,6 @@ interface BannerProps {
 
 const Banner = ({ documentId }: BannerProps) => {
   const router = useRouter()
-
   const remove = useMutation(api.documents.remove)
   const restore = useMutation(api.documents.restore)
 
@@ -58,7 +57,7 @@ const Banner = ({ documentId }: BannerProps) => {
           variant="outline"
           className="border-white bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal"
         >
-          Delete forever
+          Delete page forever
         </Button>
       </ConfirmModal>
     </div>
