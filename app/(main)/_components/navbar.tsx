@@ -1,31 +1,28 @@
-"use client";
+"use client"
 
-import { useQuery } from "convex/react";
-import { useParams } from "next/navigation";
-import { MenuIcon } from "lucide-react";
+import { useQuery } from "convex/react"
+import { useParams } from "next/navigation"
+import { MenuIcon } from "lucide-react"
 
-import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
+import { api } from "@/convex/_generated/api"
+import { Id } from "@/convex/_generated/dataModel"
 
-import Title from "./title";
-import Banner from "./banner";
-import Menu from "./menu";
-// import { Publish } from "./publish";
+import Title from "./title"
+import Banner from "./banner"
+import Menu from "./menu"
+import { Publish } from "./publish"
 
 interface NavbarProps {
-  isCollapsed: boolean;
-  onResetWidth: () => void;
-};
+  isCollapsed: boolean
+  onResetWidth: () => void
+}
 
-const Navbar = ({
-  isCollapsed,
-  onResetWidth
-}: NavbarProps) => {
-  const params = useParams();
+const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
+  const params = useParams()
 
   const document = useQuery(api.documents.getById, {
-    documentId: params.documentId as Id<"documents">,
-  });
+    documentId: params.documentId as Id<"documents">
+  })
 
   if (document === undefined) {
     return (
@@ -39,7 +36,7 @@ const Navbar = ({
   }
 
   if (document === null) {
-    return null;
+    return null
   }
 
   return (
@@ -55,14 +52,12 @@ const Navbar = ({
         <div className="flex items-center justify-between w-full">
           <Title initialData={document} />
           <div className="flex items-center gap-x-2">
-            {/* <Publish initialData={document} /> */}
+            <Publish initialData={document} />
             <Menu documentId={document._id} />
           </div>
         </div>
       </nav>
-      {document.isArchived && (
-        <Banner documentId={document._id} />
-      )}
+      {document.isArchived && <Banner documentId={document._id} />}
     </>
   )
 }
