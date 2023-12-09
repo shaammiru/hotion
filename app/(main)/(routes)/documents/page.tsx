@@ -1,6 +1,6 @@
 "use client"
 
-import router from "next/router"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useUser } from "@clerk/clerk-react"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,7 @@ import { toast } from "sonner"
 
 const DocumentsPage = () => {
   const { user } = useUser()
+  const router = useRouter()
   const create = useMutation(api.documents.create)
 
   const onCreate = () => {
